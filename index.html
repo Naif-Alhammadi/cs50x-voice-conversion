@@ -80,12 +80,18 @@
 
     <div class="drag-drop-container">
         <h2 class="file-heading">file</h2>
-        
+        <p>Drag and Drop your file here</p>
+
+        <p>or</p>
+        <input type="file" id="input-file"> <label for="input-file">choose your file</label>
+
+        <p id="drag-drop-message"></p>
     </div>
 
 
     <div class="file-preview">
         <h2 class="file-preview-heading"><i id="preview-icon"></i>file preview</h2>
+        <audio src="" controls id="file-preview"></audio>
     </div>
 
 
@@ -104,6 +110,8 @@
 
     <div class="audio-display">
         <h3 audio-display>start</h3>
+        <div id="waveform"></div>
+        <button type="button" id="playButton">on/off</button>
     </div>
     <!-- main end -->
 
@@ -112,8 +120,9 @@
 
 </div>
 
-    <script src="static/script.js"></script>
-
+     <!-- audio viewer: -->
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>    <script src="static/script.js"></script>
+    
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/ef84b809a9.js" crossorigin="anonymous"></script>
 </body>
