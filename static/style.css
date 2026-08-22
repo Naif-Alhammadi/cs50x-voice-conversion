@@ -1,4 +1,6 @@
-*, ::after, ::before {
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,23 +11,26 @@
     --secondary: white;
     --black: black;
     --static-px: 20px;
+    --trans-duration: 0.3s;
 }
 
-h1, h2, h3, li {
+h1,
+h2,
+h3,
+li {
     text-transform: capitalize;
 }
 
 body {
-    background-image: url('./images/abstract-silver-curve-background-metallic-design-style-vector.jpg');
-    height: 100vh;
-    width: 100%;
+    background-image: url("./images/abstract-silver-curve-background-metallic-design-style-vector.jpg");
+    height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .grid-container {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     backdrop-filter: blur(10px);
     background-color: rgba(62, 62, 62, 0.314);
@@ -60,7 +65,6 @@ body {
 .list-link {
     text-decoration: none;
     color: blue;
-    
 }
 
 .list-item:hover {
@@ -83,7 +87,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('./images/my-animated-eyes.png');
+    background-image: url("./images/my-animated-eyes.png");
 }
 
 .name-settings {
@@ -98,6 +102,58 @@ i {
     display: inline;
 }
 
+/* responsive nav */
+
+.responsive-nav {
+    display: flex;
+    position: absolute;
+    z-index: 999;
+    width: 35vw;
+    border-radius: var(--static-px);
+    transform: translate(0px, 20px);
+    transition: all var(--trans-duration);
+    background-color: rgba(255, 255, 255, 0.546);
+    backdrop-filter: blur(10px);
+
+}
+
+#nav-toggle {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+}
+
+.list-item-res {
+    padding: 10px;
+    list-style: none;
+    transition: all var(--trans-duration);
+}
+
+.list-item-res:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+.profile-container-res {
+    width: 15vw;
+    height: 9vh;
+    background-color: white;
+    border-radius: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("./images/my-animated-eyes.png");
+    margin-right: 20px;
+}
+
+.active-res-nav {
+    display: none;
+    transform: translate(-260px, 20px);
+    transition: all var(--trans-duration);
+
+}
+
+/* end of responsive nav */
 
 /* management */
 .management-area {
@@ -121,8 +177,6 @@ i {
     font-family: sans-serif;
     border-radius: var(--static-px);
 }
-
-
 
 .time-container {
     padding-right: var(--static-px);
@@ -155,7 +209,11 @@ i {
     cursor: pointer;
     border: solid 2px transparent;
     transition: all 0.3s;
+}
 
+audio {
+    width: 180px;
+    margin-right: 10px;
 }
 
 .active-list {
@@ -163,14 +221,14 @@ i {
     border: solid 2px var(--secondary);
 }
 
-
 /* end management */
 
 /* File */
 
-.drag-drop-container, .file-preview {
-    border-radius: var(--static-px);
+.drag-drop-container,
+.file-preview {
     height: auto;
+    width: 50px;
     width: auto;
     margin-top: 100px;
     background-color: var(--secondary);
@@ -180,15 +238,46 @@ i {
     margin-right: 7px;
 
     grid-row: 1 / 3;
+}
 
+#file-heading,
+.file-p {
+    padding: 55px 0 0 0;
+    font-size: var(--static-px);
+    font-family: sans-serif;
+}
+
+#input-file {
+    display: none;
+}
+
+#file-lable {
+    display: block;
+    width: 200px;
+    text-overflow: clip;
+    background-color: black;
+    color: white;
+    padding: 10px var(--static-px);
+    margin-right: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: var(--trans-duration);
+}
+
+#file-lable:hover {
+    color: var(--black);
+    background-color: var(--primary);
 }
 
 .drag-drop-container {
     background-color: var(--secondary);
+    width: auto;
 }
 
 .file-preview {
     background-color: var(--black);
+    width: auto;
 }
 
 .file-preview-heading {
@@ -199,7 +288,8 @@ i {
 
 /* audio view */
 
-.audio-conversion, .audio-display {
+.audio-conversion,
+.audio-display {
     background-color: var(--secondary);
     border-radius: var(--static-px);
     height: auto;
@@ -239,6 +329,90 @@ i {
     border: solid 2px var(--secondary);
     border-radius: 10px;
     grid-column: 3 / 6;
+}
+
+@media (max-width: 1085px) {
+    .profile {
+        width: 20vw;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .nav-container {
+        grid-row: 1 / 5;
+        padding: var(--static-px);
+    }
+
+    .management-area {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+    }
+
+    .audio-display,
+    .audio-conversion {
+        grid-column: auto;
+        grid-row: 5 / 5;
+    }
+
+    .audio-display {
+        grid-column: 2 / -1;
+    }
+
+    .drag-drop-container,
+    .file-preview {
+        grid-column: auto;
+        grid-row: 4 / 4;
+    }
+}
+
+button[type="button"] {
+    cursor: pointer;
+}
+
+@media (max-width: 730px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+    }
+
+    .nav-container {
+        display: none;
+    }
+
+    .management-area {
+        grid-column: auto;
+        grid-row: auto;
+        margin-bottom: 20px;
+    }
+
+    .audio-display,
+    .audio-conversion {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .audio-display {
+        grid-column: auto;
+    }
+
+    .drag-drop-container,
+    .file-preview {
+        margin-left: 10px;
+        grid-column: auto;
+        grid-row: auto;
+        height: 50vh;
+        margin: 0;
+    }
+
+    .active-res-nav {
+        display: block;
+    }
+
+    #nav-toggle {
+        display: block;
+    }
 }
 
 /* end audio view */

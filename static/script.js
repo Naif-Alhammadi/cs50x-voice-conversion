@@ -9,13 +9,18 @@ let userCity;
 let localTime = document.querySelector('#time');
 let morOrNight = document.querySelector('#mor-or-night');
 const inputFile = document.querySelector("#input-file");
+const fileName = document.querySelector("#file-name");
+
+// responsive nav
+const nav = document.querySelector(".responsive-nav");
+const tag = document.querySelector("#nav-toggle");
 
 const wavesurfer = WaveSurfer.create({
     container: '#waveform', // connect the wave with the dev
     waveColor: '#1e0af8',   // the primary color
     progressColor: '#745ce9', // color when turing on
     cursorColor: '#adacb3',   // indctor color
-    // barWidth: 2,            // columns widht
+    barWidth: 2,            // columns widht
     barRadius: 3            // around the edges
 });
 
@@ -25,7 +30,6 @@ document.querySelector('#playButton').addEventListener('click', () => {
     wavesurfer.playPause();
 });
 
-wavesurfer.load;
 
 // file 
 let dragDrop = document.querySelector(".drag-drop-container");
@@ -122,6 +126,7 @@ dragDrop.addEventListener('drop', function(e)
 
         fileSrc.src = URL.createObjectURL(e.dataTransfer.files[0]);
         wavesurfer.load(URL.createObjectURL(e.dataTransfer.files[0]));
+        fileName.innerHTML = file.name;
         dropMessage.innerHTML = "";
 
     }
@@ -139,10 +144,19 @@ inputFile.addEventListener("change", function(){
     if(checkFileExtention(file))
     {
         fileSrc.src = URL.createObjectURL(file);
+        wavesurfer.load(URL.createObjectURL(file));
         dropMessage.innerHTML = "";
+        fileName.innerHTML = file.name;
     }
     else {
         dropMessage.innerHTML = "You have to enter a .wav file";
     }
     
+});
+
+
+// responsive nav
+tag.addEventListener("click", function(){
+    console.log("hi")
+    nav.classList.toggle("active-res-nav");
 });
