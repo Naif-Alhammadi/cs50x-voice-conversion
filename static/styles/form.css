@@ -10,6 +10,7 @@ body {
 }
 
 .form-container {
+    width: 600px;
     background-color: rgba(255, 255, 255, 0.494);
     backdrop-filter: blur(10px);
     padding: 20px;
@@ -18,4 +19,22 @@ body {
 
 i {
     cursor: pointer;
+}
+
+.btn {
+    filter: invert(1);
+}
+
+
+#have-question {
+    border: solid 1.8px black;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 5px;
+    transition: all 0.3s;
+}
+
+#have-question:hover {
+    background-color: black;
+    color: white;
 }
