@@ -6,6 +6,14 @@ const donotHave = document.querySelector("#donotHave");
 const register = document.querySelector(".register");
 const login = document.querySelector(".login");
 
+const loginForm = document.querySelector("#login-form");
+
+const loginName = document.querySelector("#name");
+const loginPassword = document.querySelector("#password");
+const loginVerifyPassword = document.querySelector("#verifypassword");
+const loginEmail = document.querySelector("#email");
+
+
 haveAnAccount.addEventListener("click", function(){
     login.style.transform = "translateX(-260px)";
     register.style.transform = "translateX(0px)";
@@ -14,4 +22,29 @@ haveAnAccount.addEventListener("click", function(){
 donotHave.addEventListener("click", function() {
     login.style.transform = "translateX(0px)";
     register.style.transform = "translateX(260px)";
-})
+});
+
+
+loginForm.addEventListener("submit", event => {
+    event.preventDefault();
+    console.log(loginName.value);
+
+    
+    fetch("/login", {
+    method:"POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        "name": loginName.value,
+        "email": loginEmail.value,
+        password: loginPassword.value,
+        "verifypasswrod": loginVerifyPassword.value
+    }),
+}).then(response => response.json()).then(data => {
+    console.log(data);
+}).catch (error => {
+    console.error(error);
+});
+});
+

@@ -3,3 +3,5 @@ try.html
 file.db
 static/wavesurfer.js
 __pycache__
+venv
+flask_session
