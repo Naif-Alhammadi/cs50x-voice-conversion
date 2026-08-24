@@ -10,11 +10,25 @@ body {
 }
 
 .form-container {
-    width: 600px;
+    /* width: 600px; */
     background-color: rgba(255, 255, 255, 0.494);
     backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 10px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.login {
+    transition: all 0.3s;
+}
+
+.register {
+    position: absolute;
+    transform: translate(260px, 0px);
+    transition: all 0.3s;
 }
 
 i {
@@ -26,7 +40,7 @@ i {
 }
 
 
-#have-question {
+#have-question, #donotHave {
     border: solid 1.8px black;
     border-radius: 10px;
     text-decoration: none;
@@ -34,7 +48,7 @@ i {
     transition: all 0.3s;
 }
 
-#have-question:hover {
+#have-question:hover, #donotHave:hover {
     background-color: black;
     color: white;
 }
