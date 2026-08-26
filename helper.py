@@ -11,3 +11,4 @@ def login_required(f):
         return f(*args, **kargs)
 
     return decorate
+

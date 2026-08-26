@@ -324,6 +324,11 @@ audio {
     cursor: pointer;
 }
 
+#consersion-p {
+    margin-top: var(--static-px);
+    color: red;
+}
+
 .audio-display {
     background-color: transparent;
     border: solid 2px var(--secondary);

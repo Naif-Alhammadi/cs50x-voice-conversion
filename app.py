@@ -1,5 +1,7 @@
 from flask import Flask, render_template,request, redirect, session, jsonify
 
+import os
+
 from helper import login_required
 
 from flask_session import Session
@@ -33,3 +35,13 @@ def login():
 @login_required
 def homepage():
     return render_template("homepage.html")
+
+
+@app.route("/process", methods=["GET", "POST"])
+@login_required
+def process():
+    file = request.files["file"]
+    convert = request.form.get("convertTo")
+    os.makedirs("uploads/audios", exist_ok=True)
+    file.save(os.path.join("uploads", "audios", file.filename))
+    return jsonify("process success")

@@ -2,37 +2,17 @@
 
 const activeList = document.querySelectorAll('.specific-list-choice');
 
+
 // weather queries info
 let weather;
 let dayOrNight;
 let userCity;
 let localTime = document.querySelector('#time');
 let morOrNight = document.querySelector('#mor-or-night');
-const inputFile = document.querySelector("#input-file");
-const fileName = document.querySelector("#file-name");
 
 // responsive nav
 const nav = document.querySelector(".responsive-nav");
 const tag = document.querySelector("#nav-toggle");
-
-const wavesurfer = WaveSurfer.create({
-    container: '#waveform', // connect the wave with the dev
-    waveColor: '#1e0af8',   // the primary color
-    progressColor: '#745ce9', // color when turing on
-    cursorColor: '#adacb3',   // indctor color
-    barWidth: 2,            // columns widht
-    barRadius: 3            // around the edges
-});
-
-
-// on off button
-document.querySelector('#playButton').addEventListener('click', () => {
-    wavesurfer.playPause();
-});
-
-
-// file 
-let dragDrop = document.querySelector(".drag-drop-container");
 
 activeList[0].classList.add('active-list');
 
@@ -98,61 +78,6 @@ function time()
 }
 
 setInterval(time, 1000);
-
-
-// drag drop file
-
-const checkFileExtention = function(fileName)
-{
-    if(fileName.name.slice(-4) !== '.wav')
-        return false
-
-    return true
-}
-
-dragDrop.addEventListener('dragover', function(e)
-{
-    e.preventDefault()
-});
-
-dragDrop.addEventListener('drop', function(e)
-{
-    e.preventDefault();
-    const fileSrc = document.querySelector('#file-preview');
-    const file = e.dataTransfer.files[0];
-    const dropMessage = document.querySelector("#drag-drop-message");
-    if(checkFileExtention(file))
-    {
-
-        fileSrc.src = URL.createObjectURL(e.dataTransfer.files[0]);
-        wavesurfer.load(URL.createObjectURL(e.dataTransfer.files[0]));
-        fileName.innerHTML = file.name;
-        dropMessage.innerHTML = "";
-
-    }
-    else {
-        dropMessage.innerHTML = "You have to enter a .wav file";
-    }
-});
-
-
-inputFile.addEventListener("change", function(){
-    const file = inputFile.files[0];
-    const fileSrc = document.querySelector('#file-preview');
-    const dropMessage = document.querySelector("#drag-drop-message");
-
-    if(checkFileExtention(file))
-    {
-        fileSrc.src = URL.createObjectURL(file);
-        wavesurfer.load(URL.createObjectURL(file));
-        dropMessage.innerHTML = "";
-        fileName.innerHTML = file.name;
-    }
-    else {
-        dropMessage.innerHTML = "You have to enter a .wav file";
-    }
-    
-});
 
 
 // responsive nav

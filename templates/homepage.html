@@ -122,13 +122,14 @@
 
     <div class="audio-conversion">
         <h3 id="audio-conversion-heading">converite to</h3>
-        <ul>
+        <ul id="lists-of-conversion">
             <li class="conversion-list"><i id="consersion-list-icon"></i>man</li>
             <li class="conversion-list"><i id="consersion-list-icon"></i>women</li>
             <li class="conversion-list"><i id="consersion-list-icon"></i>animal</li>
             <li class="conversion-list"><i id="consersion-list-icon"></i>robot</li>
         </ul>
-
+        <p id="consersion-p"></p>
+        
     </div>
 
 
@@ -146,7 +147,12 @@
 
      <!-- audio viewer: -->
      <script src="../static/scripts/script.js"></script>
-     <script src="https://unpkg.com/wavesurfer.js@7"></script> 
+
+     <!-- turn it off to wrok offline -->
+     <!-- <script src="https://unpkg.com/wavesurfer.js@7"></script>  -->
+      <script src="../static/scripts/wavesurfer.js"></script>
+
+     <script src="../static/scripts/conversion.js"></script>
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/ef84b809a9.js" crossorigin="anonymous"></script>
