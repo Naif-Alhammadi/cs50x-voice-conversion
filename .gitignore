@@ -1,7 +1,7 @@
 helpng.wav
 try.html
 file.db
-static/wavesurfer.js
+static/scripts/wavesurfer.js
 __pycache__
 venv
 flask_session
