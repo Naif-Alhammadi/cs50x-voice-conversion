@@ -27,9 +27,7 @@ donotHave.addEventListener("click", function() {
 
 loginForm.addEventListener("submit", event => {
     event.preventDefault();
-    console.log(loginName.value);
 
-    
     fetch("/login", {
     method:"POST",
     headers: {
@@ -42,7 +40,10 @@ loginForm.addEventListener("submit", event => {
         "verifypasswrod": loginVerifyPassword.value
     }),
 }).then(response => response.json()).then(data => {
-    console.log(data);
+    if (data["redirect"])
+    {
+        window.location.href = data["location"];
+    }
 }).catch (error => {
     console.error(error);
 });
