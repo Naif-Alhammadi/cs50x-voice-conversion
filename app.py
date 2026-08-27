@@ -1,10 +1,17 @@
+import os
+
+from dotenv import load_dotenv
+
 from flask import Flask, render_template,request, redirect, session, jsonify
 
-import os
 
 from helper import login_required
 
 from flask_session import Session
+
+# load the weather API key
+load_dotenv()
+
 app = Flask(__name__)
 
 app.config["SESSION_PERMANENT"] = False
@@ -16,6 +23,11 @@ def index():
     if session.get("user_id") is not None:
         return render_template("homepage.html")
     return render_template("index.html")
+
+@app.route("/weather")
+@login_required
+def weather():
+    return jsonify({"weatherAPI": os.getenv("WEATHER_API")})
 
 @app.route("/login", methods=["GET" , "POST"])
 def login():

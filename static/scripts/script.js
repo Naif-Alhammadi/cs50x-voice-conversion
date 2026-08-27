@@ -36,7 +36,7 @@ navigator.geolocation.getCurrentPosition(position => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=fc86fb40dccbd5b597ec08467795c4df`).then(response => 
+    fetch("/weather").then(response => 
         {
             if(!response.ok)
             {
@@ -44,17 +44,22 @@ navigator.geolocation.getCurrentPosition(position => {
             }
             return response.json();
         }).then(data => {
-        weather = data.weather[0]['main'];
-        dayOrNight = data.weather[0]['icon'];
-        userCity = data.name
-        if(dayOrNight.slice(-1) === 'n')
-        {
-            morOrNight.innerHTML = "🎑";
-        }
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${data["weatherAPI"]}`).then(response => response.json()).then(data => {
 
-        else {
-            morOrNight.innerHTML = "🌅"
-        }
+                weather = data.weather[0]['main'];
+                dayOrNight = data.weather[0]['icon'];
+                userCity = data.name
+                if(dayOrNight.slice(-1) === 'n')
+                {
+                    morOrNight.innerHTML = "🎑";
+                }
+        
+                else {
+                    morOrNight.innerHTML = "🌅"
+                }
+            }).catch(error => {
+                console.log(error);
+            });
 
     }).catch(error => {
         console.log(error);

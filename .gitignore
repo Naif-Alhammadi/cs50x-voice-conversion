@@ -6,3 +6,4 @@ __pycache__
 venv
 flask_session
 uploads
+.env
