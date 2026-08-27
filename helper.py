@@ -58,11 +58,72 @@ class File:
                     if stereo == b'\x02\x00':
                         pass
 
-                    file.read(chunkSize)
+                    self.sampleRate = self.decimalToHex(file.read(chunkSize))
+
                     break
 
-
                 self.fileFormat = False
+
+
+    def decimalToHex(self, decimal):
+        """"Take decimal values and convert (return) them to hexdecimal values"""
+        # hexdecimal base
+        hex = 16
+
+        # final hexdecimal value after taking it from the list
+        hexValue = ''
+
+        # to keep every reminder of a number
+        reminder = []
+        for i in range(0 , len(decimal)):
+
+            # to keep track of the current number in the list
+            result = decimal[i]
+
+            # keep dividing until division reaches 0
+            while result != 0:
+
+                # value of base 16
+                num = result % hex
+
+                # insert that value to the beginning for the sampleRate
+                reminder.insert(0, self.hexLetters(num))
+
+                # update the result division
+                result = result // hex
+
+        # for each hex in reminder
+        for num in reminder:
+
+            # append hex value in one string
+            hexValue = hexValue + str(num)
+
+        # return the value in base 16th
+        return int(hexValue, hex)
+
+    def hexLetters(self, num):
+        """""Convert the number to its appropriate hexdecimal value"""
+        match num:
+            case 15:
+                num = 'f'
+                return num
+            case 14:
+                num = 'e'
+                return num
+            case 13:
+                num = 'd'
+                return num
+            case 12:
+                num = 'c'
+                return num
+            case 11:
+                num = 'b'
+                return num
+            case 10:
+                num = 'a'
+                return num
+            case _:
+                return num
 
 if __name__ == "__main__":
     f = File("uploads/audios/lack in.wav")
